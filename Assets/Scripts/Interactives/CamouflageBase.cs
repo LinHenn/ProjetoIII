@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamouflageBase : InfoBase, IInteractible
+public class CamouflageBase : MonoBehaviour, IInteractible
 {
     [SerializeField] private GameObject cameraman;
     [SerializeField] private GameObject body;
+    [SerializeField] private GameObject point;
 
     public void Interaction()
     {
@@ -25,6 +26,7 @@ public class CamouflageBase : InfoBase, IInteractible
         cameraman.SetActive(false);
         body.SetActive(false);
 
+        PlayerController.PC.gameObject.transform.position = point.transform.position;
         PlayerController.PC.gameObject.SetActive(true);
     }
 

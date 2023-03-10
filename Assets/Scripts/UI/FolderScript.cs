@@ -15,6 +15,8 @@ public class FolderScript : MonoBehaviour
     private void Awake()
     {
         FS = this;
+        itemImage.SetActive(false);
+
     }
 
 

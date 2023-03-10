@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class handInteraction : InfoBase, IInteractible
+public class handInteraction : MonoBehaviour, IInteractible
 {
 
     public string InteractionName;
 
-    public UnityEvent willHappen;
+    public UnityEvent willHappens;
 
 
     public void Interaction()
@@ -18,7 +18,7 @@ public class handInteraction : InfoBase, IInteractible
         {
             Gamecontrol.GC.RemoveInventory(handScript.HS.itemHand);
             handScript.HS.setHand(handScript.HS.itemHand);
-            willHappen.Invoke();
+            willHappens.Invoke();
             Destroy(this);
 
         }

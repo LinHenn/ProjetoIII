@@ -51,8 +51,9 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(cameraman.position,cameraman.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(cameraman.position, cameraman.TransformDirection(Vector3.forward) * hit.distance, Color.blue);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
 
+            /*
             IInteractible obj = hit.transform.GetComponent<IInteractible>();
             if (obj != null)
             {
@@ -60,6 +61,15 @@ public class PlayerController : MonoBehaviour
 
                 if(mayMove) if (Input.GetAxis("Fire1") > 0) obj.Interaction();
             }
+            */
+            var obj = hit.transform.GetComponent<InfoBase>();
+            if (obj != null)
+            {
+                obj.GetName();
+
+                if (mayMove) if (Input.GetAxis("Fire1") > 0) obj.willInteract();
+            }
+
 
         }
         else

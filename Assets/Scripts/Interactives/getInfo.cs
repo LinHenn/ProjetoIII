@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class getInfo : InfoBase, IInteractible
+public class getInfo : MonoBehaviour, IInteractible
 {
 
 

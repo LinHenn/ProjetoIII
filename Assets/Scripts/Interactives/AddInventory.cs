@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddInventory : InfoBase, IInteractible
+public class AddInventory : MonoBehaviour, IInteractible
 {
     public itemInventory item;
 

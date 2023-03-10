@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class showImage : InfoBase, IInteractible
+public class showImage : MonoBehaviour, IInteractible
 {
 
     public Sprite folder;
