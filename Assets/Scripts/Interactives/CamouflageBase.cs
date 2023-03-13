@@ -6,7 +6,7 @@ public class CamouflageBase : MonoBehaviour, IInteractible
 {
     [SerializeField] private GameObject cameraman;
     [SerializeField] private GameObject body;
-    [SerializeField] private GameObject point;
+    //[SerializeField] private GameObject point;
 
     public void Interaction()
     {
@@ -26,7 +26,7 @@ public class CamouflageBase : MonoBehaviour, IInteractible
         cameraman.SetActive(false);
         body.SetActive(false);
 
-        PlayerController.PC.gameObject.transform.position = point.transform.position;
+        PlayerController.PC.gameObject.transform.position = transform.position;
         PlayerController.PC.gameObject.SetActive(true);
     }
 
