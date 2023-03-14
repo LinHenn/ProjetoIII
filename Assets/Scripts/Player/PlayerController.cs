@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
                 if (mayMove) if (Input.GetAxis("Fire1") > 0) obj.willInteract();
             }
+            else Gamecontrol.GC.setTarget("");
 
 
         }
