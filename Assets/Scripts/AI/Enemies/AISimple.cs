@@ -9,7 +9,8 @@ public class AISimple : MonoBehaviour
     public FOVEnemy _cabeca;
     NavMeshAgent _navMesh;
     Transform alvo;
-    Vector3 posicInicialDaAI;
+    [HideInInspector]
+    public Vector3 posicInicialDaAI;
     Vector3 ultimaPosicConhecida;
     float timerProcura;
 

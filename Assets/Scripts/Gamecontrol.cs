@@ -72,7 +72,7 @@ public class Gamecontrol : MonoBehaviour
     public void ReorganizeInventory()
     {
         
-        Debug.Log(Inventory.Count);
+        //Debug.Log(Inventory.Count);
 
         int i = 0;
 

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class AddInventory : MonoBehaviour, IInteractible
 {
+    public bool isToDestroy;
     public itemInventory item;
 
     public void Interaction()
     {
         Gamecontrol.GC.AddInventory(item);
+        Destroy(this);
 
-        this.gameObject.SetActive(false);
+
+        if(isToDestroy) this.gameObject.SetActive(false);
+
     }
 }

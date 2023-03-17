@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class handInteraction : MonoBehaviour, IInteractible
 {
 
-    public string InteractionName;
+    public int InteractionIndex;
+    public bool isToRemove;
 
     public UnityEvent willHappens;
 
@@ -14,12 +15,15 @@ public class handInteraction : MonoBehaviour, IInteractible
     public void Interaction()
     {
 
-        if (handScript.HS.itemHand.Name == InteractionName)
+        if (handScript.HS.itemHand.index == InteractionIndex)
         {
-            Gamecontrol.GC.RemoveInventory(handScript.HS.itemHand);
-            handScript.HS.setHand(handScript.HS.itemHand);
+            if (isToRemove)
+            {
+                Gamecontrol.GC.RemoveInventory(handScript.HS.itemHand);
+                handScript.HS.setHand(handScript.HS.itemHand);
+            }
             willHappens.Invoke();
-            Destroy(this);
+            //Destroy(this);
 
         }
 
