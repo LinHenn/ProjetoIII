@@ -14,7 +14,7 @@ public class DoorLock : MonoBehaviour, IInteractible
     {
         if (handScript.HS.itemHand.index == indexCompare)
         {
-            Debug.Log("Abriu");
+            //Debug.Log("Abriu");
             GetComponent<Animator>().SetTrigger("Open");
 
             willHappen.Invoke();
@@ -24,7 +24,7 @@ public class DoorLock : MonoBehaviour, IInteractible
             */
         }
             
-        else Debug.Log("Abriu nao");
+        //else Debug.Log("Abriu nao");
 
         //this.gameObject.SetActive(false);
     }

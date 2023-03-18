@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
                 if (mayMove) if (Input.GetAxis("Fire1") > 0) obj.willInteract();
             }
-            else Gamecontrol.GC.setTarget("");
+            else Gamecontrol.GC.setTarget("", false);
 
 
         }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.DrawRay(cameraman.position, cameraman.TransformDirection(Vector3.forward) * 1000, Color.red);
             //Debug.Log("Did not Hit");
-            Gamecontrol.GC.setTarget("");
+            Gamecontrol.GC.setTarget("", false);
         }
 
 

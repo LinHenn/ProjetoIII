@@ -32,10 +32,11 @@ public class Gamecontrol : MonoBehaviour
     }
 
 
-    public void setTarget(string item)
+    public void setTarget(string item, bool mayTarget)
     {
         TargetItem = item;
-        targetScript.ScriptTarget.setText(item);
+        targetScript.ScriptTarget.setText(item, mayTarget);
+        //Debug.Log(mayTarget);
     }
 
 
@@ -58,7 +59,7 @@ public class Gamecontrol : MonoBehaviour
 
     public void RemoveInventory(itemInventory item)
     {
-        Debug.Log("Removerei " +item.Name);
+        //Debug.Log("Removerei " +item.Name);
 
         Inventory.Remove(item);
 

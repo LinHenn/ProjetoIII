@@ -7,20 +7,22 @@ public class InfoBase : MonoBehaviour
 {
 
     public UnityEvent willHappen;
+    public float distance = 5;
+    protected float playerDist;
 
 
     public void GetName()
     {
-        if (Gamecontrol.GC.TargetItem != gameObject.name)
-        {
-            //Debug.Log(gameObject.name);
-            Gamecontrol.GC.setTarget(gameObject.name);
-        }
+        playerDist = Vector3.Distance(transform.position, PlayerController.PC.transform.position);
+        
+        if(playerDist < distance) Gamecontrol.GC.setTarget(gameObject.name, true);
+        else Gamecontrol.GC.setTarget(gameObject.name, false);
     }
 
 
     public virtual void willInteract()
     {
+        if(playerDist < distance)
         willHappen.Invoke();
     }
 
