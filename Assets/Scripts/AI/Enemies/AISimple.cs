@@ -113,11 +113,12 @@ public class AISimple : MonoBehaviour
         }
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
-            Debug.Log("Morri");
-    }
+
+        if(Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 2f) Debug.Log("Morri");
+    }*/
 
 
     void RandomWayPoints()

@@ -53,6 +53,8 @@ public class FOVEnemy : MonoBehaviour
 
     void Update()
     {
+        if (Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 1f) Debug.Log("Morri"); //Checa se o jogador morre
+
         if (_tipoDeChecagem == TipoDeChecagem._10PorSegundo)
         {
             timerChecagem += Time.deltaTime;
