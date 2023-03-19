@@ -16,6 +16,7 @@ public class targetScript : MonoBehaviour
     private void Awake()
     {
         ScriptTarget = this;
+
     }
 
 

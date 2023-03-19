@@ -8,3 +8,10 @@ public interface IInteractible
     //void GetName();
     void Interaction();
 }
+
+
+public interface IPuzzle
+{
+
+    void letsPlay();
+}
