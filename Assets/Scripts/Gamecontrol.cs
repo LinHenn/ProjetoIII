@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 [System.Serializable]
@@ -126,4 +127,12 @@ public class Gamecontrol : MonoBehaviour
 
 
     }
+
+
+
+    public void YouDied()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

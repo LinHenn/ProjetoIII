@@ -35,8 +35,9 @@ public class microPuzzle : MonoBehaviour, IPuzzle
     {
         if(sequence >= Answer)
         {
-            Debug.Log("Explodiu");
+            
             itHappens.Invoke();
+            //StartCoroutine(waitToExplode());            
         }
         else Debug.Log("Nao bombou");
     }

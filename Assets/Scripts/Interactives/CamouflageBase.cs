@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class CamouflageBase : MonoBehaviour, IInteractible
 {
-    [SerializeField] private GameObject cameraman;
     [SerializeField] private GameObject body;
-    //[SerializeField] private GameObject point;
+    [SerializeField] private GameObject cameraman;
+    [SerializeField] private Transform point;
+
+    public enum boxType
+    {
+        Trashcan, DeathSign
+    };
+    public boxType _TypeBox = boxType.Trashcan;
 
     public void Interaction()
     {
@@ -26,7 +32,12 @@ public class CamouflageBase : MonoBehaviour, IInteractible
         cameraman.SetActive(false);
         body.SetActive(false);
 
-        PlayerController.PC.gameObject.transform.position = transform.position;
+        if (_TypeBox == boxType.Trashcan) PlayerController.PC.gameObject.transform.position = point.position;
+        else PlayerController.PC.gameObject.transform.position = transform.position;
+
+        Debug.Log(point.position);
+        Debug.Log(PlayerController.PC.gameObject.transform.position);
+
         PlayerController.PC.gameObject.SetActive(true);
     }
 
