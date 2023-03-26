@@ -114,7 +114,7 @@ public class ChatScript : MonoBehaviour
 
             index = 0;
 
-            PlayerController.PC.setMove(true);
+            //PlayerController.PC.setMove(true);
 
         }
     

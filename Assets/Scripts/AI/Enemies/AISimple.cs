@@ -88,6 +88,15 @@ public class AISimple : MonoBehaviour
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.procurandoAlvoPerdido;
                     }
+
+                    //Checa se o jogador morre
+                    if (Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 1f)
+                    {
+                        Gamecontrol.GC.YouDied();
+                        Debug.Log("Morri");
+                    }
+                    //
+
                     break;
 
                 case estadoDaAI.procurandoAlvoPerdido: //Para quando perder o jogador de vista

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class puzzlesInfo
 {
+    [SerializeReference] private string Description;
     public bool isComplete;
     public UnityEvent willHappen;
 }

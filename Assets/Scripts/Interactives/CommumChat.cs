@@ -23,6 +23,7 @@ public class CommumChat : MonoBehaviour, IInteractible
 
     public void isTalked()
     {
+        PlayerController.PC.setMove(true);
         StartCoroutine(wait());
     }
 

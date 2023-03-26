@@ -16,7 +16,7 @@ public class CamouflageBase : MonoBehaviour, IInteractible
 
     public void Interaction()
     {
-        Debug.Log("Escondi");
+        //Debug.Log("Escondi");
 
         cameraman.SetActive(true);
         body.SetActive(true);
@@ -27,7 +27,7 @@ public class CamouflageBase : MonoBehaviour, IInteractible
 
     public void returnGame()
     {
-        Debug.Log("Voltei");
+        //Debug.Log("Voltei");
 
         cameraman.SetActive(false);
         body.SetActive(false);
@@ -35,8 +35,8 @@ public class CamouflageBase : MonoBehaviour, IInteractible
         if (_TypeBox == boxType.Trashcan) PlayerController.PC.gameObject.transform.position = point.position;
         else PlayerController.PC.gameObject.transform.position = transform.position;
 
-        Debug.Log(point.position);
-        Debug.Log(PlayerController.PC.gameObject.transform.position);
+        //Debug.Log(point.position);
+        //Debug.Log(PlayerController.PC.gameObject.transform.position);
 
         PlayerController.PC.gameObject.SetActive(true);
     }
