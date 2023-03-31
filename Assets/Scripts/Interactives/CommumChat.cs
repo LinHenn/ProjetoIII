@@ -13,6 +13,7 @@ public class CommumChat : MonoBehaviour, IInteractible
         if (!mayChat) return;
 
         mayChat = false;
+
         ChatScript.CS.ReceiveChat(chat);
         //StartCoroutine(ChatScript.CS.receptChat(chat));
 

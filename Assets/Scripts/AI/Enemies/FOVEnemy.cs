@@ -31,7 +31,7 @@ public class FOVEnemy : MonoBehaviour
     public float anguloDeVisao = 120;
     [Range(1, 10)]
     public int numeroDeCamadas = 3;
-    [Range(0.02f, 0.15f)]
+    [Range(0.02f, 0.25f)]
     public float distanciaEntreCamadas = 0.1f;
     //
     [Space(10)]

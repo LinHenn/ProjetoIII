@@ -36,7 +36,9 @@ public class ChatScript : MonoBehaviour
 
     public void ReceiveChat(ChatText CT)
     {
+
         Chat = CT;
+
 
         index = 0;
         chatScreen.text = Chat.texts[index];
@@ -117,12 +119,8 @@ public class ChatScript : MonoBehaviour
             //PlayerController.PC.setMove(true);
 
         }
-    
-        
 
     }
-
-    
 
 
 
