@@ -136,4 +136,20 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public void slowMouse(bool i)
+    {
+        if (i)
+        {
+            m_MouseLook.XSensitivity = 0.5f;
+            m_MouseLook.YSensitivity = 0.5f;
+        }
+        else
+        {
+            m_MouseLook.XSensitivity = 2f;
+            m_MouseLook.YSensitivity = 2f;
+        }
+
+    }
+
+
 }

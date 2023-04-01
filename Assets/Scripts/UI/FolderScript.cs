@@ -35,6 +35,7 @@ public class FolderScript : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        PlayerController.PC.slowMouse(true);
     }
 
 
@@ -48,6 +49,7 @@ public class FolderScript : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        PlayerController.PC.slowMouse(false);
     }
 
 

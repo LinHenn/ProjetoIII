@@ -25,6 +25,7 @@ public class PuzzleRef : MonoBehaviour
     public void playPuzzle(int index)
     {
         PlayerController.PC.setMove(false);
+        PlayerController.PC.slowMouse(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -38,6 +39,7 @@ public class PuzzleRef : MonoBehaviour
     public void closePuzzle(int index)
     {
         PlayerController.PC.setMove(true);
+        PlayerController.PC.slowMouse(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

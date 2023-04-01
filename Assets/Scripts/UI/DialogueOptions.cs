@@ -49,11 +49,13 @@ public class DialogueOptions : MonoBehaviour
     {
         if (i)
         {
+            PlayerController.PC.slowMouse(i);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            PlayerController.PC.slowMouse(i);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
