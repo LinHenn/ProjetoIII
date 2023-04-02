@@ -6,7 +6,7 @@ public class CommumChat : MonoBehaviour, IInteractible
 {
     public ChatText chat;
 
-    public bool mayChat;
+    public bool mayChat = true;
 
     public void Interaction()
     {

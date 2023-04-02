@@ -53,12 +53,6 @@ public class FOVEnemy : MonoBehaviour
 
     void Update()
     {
-        /*Checa se o jogador morre
-        if (Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 1f)
-        {
-            Gamecontrol.GC.YouDied();
-            Debug.Log("Morri");
-        }*/
 
 
         if (_tipoDeChecagem == TipoDeChecagem._10PorSegundo)
@@ -126,40 +120,6 @@ public class FOVEnemy : MonoBehaviour
             }
         }
 
-        /*
-        if (_tipoDeColisao == TipoDeColisao.OverlapSphere)
-        {
-            Collider[] alvosNoRaioDeAlcance = Physics.OverlapSphere(cabecaInimigo.position, distanciaDeVisao, layersDosInimigos);
-            foreach (Collider targetCollider in alvosNoRaioDeAlcance)
-            {
-                Transform alvo = targetCollider.transform;
-                Vector3 direcaoDoAlvo = (alvo.position - cabecaInimigo.position).normalized;
-                if (Vector3.Angle(cabecaInimigo.forward, direcaoDoAlvo) < (anguloDeVisao / 2.0f))
-                {
-                    float distanciaDoAlvo = Vector3.Distance(transform.position, alvo.position);
-                    if (!Physics.Raycast(cabecaInimigo.position, direcaoDoAlvo, distanciaDoAlvo, layerObstaculos))
-                    {
-                        if (!alvo.transform.IsChildOf(cabecaInimigo.root))
-                        {
-                            if (!listaTemporariaDeColisoes.Contains(alvo))
-                            {
-                                listaTemporariaDeColisoes.Add(alvo);
-                            }
-                            if (!inimigosVisiveis.Contains(alvo))
-                            {
-                                inimigosVisiveis.Add(alvo);
-                            }
-                        }
-                    }
-                }
-            }
-            for (int x = 0; x < inimigosVisiveis.Count; x++)
-            {
-                Debug.DrawLine(cabecaInimigo.position, inimigosVisiveis[x].position, Color.blue);
-            }
-        }
-        */
-
         //remove da lista inimigos que não estão visiveis
         for (int x = 0; x < inimigosVisiveis.Count; x++)
         {
@@ -171,31 +131,4 @@ public class FOVEnemy : MonoBehaviour
         listaTemporariaDeColisoes.Clear();
     }
 
-    /*
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (_tipoDeColisao == TipoDeColisao.OverlapSphere)
-        {
-            if (desenharEsfera)
-            {
-                Gizmos.color = Color.white;
-                Gizmos.DrawWireSphere(cabecaInimigo.position, distanciaDeVisao);
-            }
-            Gizmos.color = Color.green;
-            float angleToRay1 = (180.0f - anguloDeVisao) * 0.5f;
-            float angleToRay2 = anguloDeVisao + (180.0f - anguloDeVisao) * 0.5f;
-            Vector3 rayDirection1 = Quaternion.AngleAxis(angleToRay1, cabecaInimigo.up) * (-transform.right);
-            Vector3 rayDirection2 = Quaternion.AngleAxis(angleToRay2, cabecaInimigo.up) * (-transform.right);
-            Gizmos.DrawRay(cabecaInimigo.position, rayDirection1 * distanciaDeVisao);
-            Gizmos.DrawRay(cabecaInimigo.position, rayDirection2 * distanciaDeVisao);
-            //
-            UnityEditor.Handles.color = Color.green;
-            float angle = Vector3.Angle(transform.forward, rayDirection1);
-            Vector3 pos = cabecaInimigo.position + (cabecaInimigo.forward * distanciaDeVisao * Mathf.Cos(angle * Mathf.Deg2Rad));
-            UnityEditor.Handles.DrawWireDisc(pos, cabecaInimigo.transform.forward, distanciaDeVisao * Mathf.Sin(angle * Mathf.Deg2Rad));
-        }
-    }
-#endif
-    */
 }

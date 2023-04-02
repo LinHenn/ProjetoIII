@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController PC;
 
+    public Material suitPlayer;
+
     public bool mayMove;
     [SerializeField] private float p_Speed;
     [SerializeField] private Transform cameraman;
@@ -149,6 +151,15 @@ public class PlayerController : MonoBehaviour
             m_MouseLook.YSensitivity = 2f;
         }
 
+    }
+
+    public Material changeSuit(Material mat)
+    {
+        var suit = suitPlayer;
+        suitPlayer = mat;
+
+
+        return suit;
     }
 
 

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cop
+  - Qualquer
   layers:
   - Default
   - TransparentFX
