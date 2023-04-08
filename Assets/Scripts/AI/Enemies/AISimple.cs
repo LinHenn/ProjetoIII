@@ -68,7 +68,7 @@ public class AISimple : MonoBehaviour
 
                 case estadoDaAI.andando: // Para os de rotina
                     _navMesh.destination = wayPoints[currentWayPoint].transform.position;
-                    if (distanceWayPoint < 2)
+                    if (distanceWayPoint < 1)
                     {
                         RandomWayPoints();
                         //_estadoAI = estadoDaAI.andando;
