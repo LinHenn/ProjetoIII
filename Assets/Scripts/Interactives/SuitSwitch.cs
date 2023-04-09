@@ -19,7 +19,7 @@ public class SuitSwitch : MonoBehaviour, IInteractible
         var mat = PlayerController.PC.changeSuit(thisMaterial);
         thisMaterial = mat;
         GetComponent<Renderer>().material = thisMaterial;
-        Debug.Log(thisMaterial.name);
+        //Debug.Log(thisMaterial.name);
 
         StartCoroutine(willwait());
     }

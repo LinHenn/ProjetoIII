@@ -34,9 +34,21 @@ public class targetScript : MonoBehaviour
 
     public void setText(string txt, bool mayTarget)
     {
+        /*
         targetText.text = txt;
-
+        
         if (mayTarget) targetColor.color = Color.black;
         else targetColor.color = Color.white;
+        */
+        if (mayTarget)
+        {
+            targetColor.color = Color.white;
+            targetText.text = txt;
+        }
+        else
+        {
+            targetColor.color = Color.black;
+            targetText.text = "";
+        }
     }
 }

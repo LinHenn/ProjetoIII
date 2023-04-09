@@ -104,7 +104,7 @@ public class AISimple2 : MonoBehaviour
                         {
                             wrongSuit.Invoke();
                         }
-                        Debug.Log("Break");
+                        //Debug.Log("Break");
                         break;
                     }
                     //
