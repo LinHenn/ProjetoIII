@@ -14,7 +14,8 @@ public class OptionsButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void SetButton(OptionsDial dial)
     {
-        targetText.text = dial.textOpt;
+        if(Gamecontrol.GC.Linguagem == Language.Português) targetText.text = dial.textOptPT;
+        else targetText.text = dial.textOptEN;
         Happen = dial.optEvent;
     }
 

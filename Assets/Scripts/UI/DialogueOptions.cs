@@ -8,7 +8,8 @@ using UnityEngine.UI;
 [System.Serializable]
 public class OptionsDial
 {
-    public string textOpt;
+    public string textOptPT;
+    public string textOptEN;
     public UnityEvent optEvent;
 }
 

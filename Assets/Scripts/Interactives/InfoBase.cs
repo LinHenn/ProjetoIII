@@ -5,11 +5,16 @@ using UnityEngine.Events;
 
 public class InfoBase : MonoBehaviour
 {
+    public string namePT;
 
     public UnityEvent willHappen;
     public float distance = 5;
     protected float playerDist;
 
+    private void Start()
+    {
+        if (Gamecontrol.GC.Linguagem == Language.Português) gameObject.name = namePT;
+    }
 
     public void GetName()
     {

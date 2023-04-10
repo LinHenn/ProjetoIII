@@ -20,7 +20,8 @@ public class infoPuzzle : InfoBase
 
     public List<puzzlesInfo> Puzzles;
 
-    
+
+
     public override void willInteract()
     {
         if (playerDist > distance) return;

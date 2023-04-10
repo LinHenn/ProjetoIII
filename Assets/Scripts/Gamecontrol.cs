@@ -13,11 +13,21 @@ public class itemInventory
     public Sprite img;
 }
 
+public enum Language
+{
+    English, 
+    Português
+}
+
 
 
 public class Gamecontrol : MonoBehaviour
 {
     public static Gamecontrol GC;
+
+    public Language Linguagem;
+    public static Language setLanguage;
+
 
     public List<InventoryItem> itemsInventory;
     public List<itemInventory> Inventory;
@@ -30,6 +40,16 @@ public class Gamecontrol : MonoBehaviour
     private void Awake()
     {
         GC = this;
+
+        //Remover assim que finalizar o jogo
+        setLanguage = Linguagem;
+        //
+
+        //Adicionar assim que criar o jogo
+        //Linguagem = setLanguage;
+        
+
+        Debug.Log(setLanguage.ToString());
     }
 
 

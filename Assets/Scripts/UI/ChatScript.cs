@@ -8,7 +8,8 @@ using TMPro;
 [System.Serializable]
 public class ChatText
 {
-    public string[] texts;
+    public string[] textsPT;
+    public string[] textsEN;
     public UnityEvent happen;
 }
 
@@ -41,7 +42,9 @@ public class ChatScript : MonoBehaviour
 
 
         index = 0;
-        chatScreen.text = Chat.texts[index];
+        if(Gamecontrol.GC.Linguagem == Language.Português) chatScreen.text = Chat.textsPT[index];
+        else chatScreen.text = Chat.textsEN[index];
+
         panelScreen.SetActive(true);
 
         PlayerController.PC.setMove(false);
@@ -55,18 +58,34 @@ public class ChatScript : MonoBehaviour
         Chat = CT;
 
         index = 0;
-        chatScreen.text = Chat.texts[index];
+        if (Gamecontrol.GC.Linguagem == Language.Português) chatScreen.text = Chat.textsPT[index];
+        else chatScreen.text = Chat.textsEN[index];
         panelScreen.SetActive(true);
 
         PlayerController.PC.setMove(false);
 
-        foreach(var talk in Chat.texts)
+        if (Gamecontrol.GC.Linguagem == Language.Português)
         {
-             new WaitUntil(() => Input.GetAxis("Fire1") == 0);
+            foreach (var talk in Chat.textsPT)
+            {
+                new WaitUntil(() => Input.GetAxis("Fire1") == 0);
 
-            index++;
-            chatScreen.text = Chat.texts[index];
+                index++;
+                chatScreen.text = Chat.textsPT[index];
+            }
         }
+
+        else
+        {
+            foreach (var talk in Chat.textsPT)
+            {
+                new WaitUntil(() => Input.GetAxis("Fire1") == 0);
+
+                index++;
+                chatScreen.text = Chat.textsPT[index];
+            }
+        }
+
 
         Chat.happen.Invoke();
 
@@ -98,27 +117,57 @@ public class ChatScript : MonoBehaviour
         timer = 1f;
 
 
-        if (index + 1 < Chat.texts.Length)
+        if (Gamecontrol.GC.Linguagem == Language.Português)
         {
-            index++;
-            //Debug.Log(Chat.texts[index]);
-            chatScreen.text = Chat.texts[index];
+            if (index + 1 < Chat.textsPT.Length)
+            {
+                index++;
+                //Debug.Log(Chat.texts[index]);
+                chatScreen.text = Chat.textsPT[index];
+            }
+
+            else
+            {
+
+                //Debug.Log("Acabou");
+
+                Chat.happen.Invoke();
+
+                panelScreen.SetActive(false);
+
+                index = 0;
+
+                //PlayerController.PC.setMove(true);
+
+            }
         }
 
         else
         {
+            if (index + 1 < Chat.textsEN.Length)
+            {
+                index++;
+                //Debug.Log(Chat.texts[index]);
+                chatScreen.text = Chat.textsEN[index];
+            }
 
-            //Debug.Log("Acabou");
+            else
+            {
 
-            Chat.happen.Invoke();
+                //Debug.Log("Acabou");
 
-            panelScreen.SetActive(false);
+                Chat.happen.Invoke();
 
-            index = 0;
+                panelScreen.SetActive(false);
 
-            //PlayerController.PC.setMove(true);
+                index = 0;
 
+                //PlayerController.PC.setMove(true);
+
+            }
         }
+
+
 
     }
 
