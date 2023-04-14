@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class AISimple : MonoBehaviour
 {
     public FOVEnemy _cabeca;
+    public Animator anim;
     NavMeshAgent _navMesh;
     Transform alvo;
     [HideInInspector]
@@ -40,8 +41,16 @@ public class AISimple : MonoBehaviour
         alvo = null;
         ultimaPosicConhecida = Vector3.zero;
 
-        if (_paradoRotina == ParadoouRotina.parado) _estadoAI = estadoDaAI.parado;
-        else _estadoAI = estadoDaAI.andando;
+        if (_paradoRotina == ParadoouRotina.parado)
+        {
+            anim.SetBool("walking", false);
+            _estadoAI = estadoDaAI.parado;
+        }
+        else
+        {
+            anim.SetBool("walking", true);
+            _estadoAI = estadoDaAI.andando;
+        }
 
         posicInicialDaAI = transform.position;
         timerProcura = 0;
@@ -52,17 +61,23 @@ public class AISimple : MonoBehaviour
     {
         if (_paradoRotina == ParadoouRotina.rotina) { distanceWayPoint = Vector3.Distance(wayPoints[currentWayPoint].transform.position, transform.position); }
 
+
         if (_cabeca)
         {
             switch (_estadoAI)
             {
                 case estadoDaAI.parado: //Para os Idle
                     _navMesh.SetDestination(posicInicialDaAI);
+
+                    if (_navMesh.remainingDistance < 0.5f) anim.SetBool("walking", false);
+                    else anim.SetBool("walking", true);
+
                     if (_cabeca.inimigosVisiveis.Count > 0)
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.seguindo;
+                        anim.SetBool("walking", true);
                     }
                     break;
 
@@ -78,6 +93,7 @@ public class AISimple : MonoBehaviour
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.seguindo;
+                        anim.SetBool("walking", true);
                     }
                     break;
 
@@ -87,6 +103,7 @@ public class AISimple : MonoBehaviour
                     {
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.procurandoAlvoPerdido;
+                        anim.SetBool("walking", true);
                     }
 
                     //Checa se o jogador morre
@@ -102,13 +119,22 @@ public class AISimple : MonoBehaviour
                 case estadoDaAI.procurandoAlvoPerdido: //Para quando perder o jogador de vista
                     _navMesh.SetDestination(ultimaPosicConhecida);
                     timerProcura += Time.deltaTime;
+
+                    if (_navMesh.remainingDistance < 0.5f) anim.SetBool("walking", false);
+
                     if (timerProcura > 5)
                     {
                         timerProcura = 0;
                         //
-                        if (_paradoRotina == ParadoouRotina.parado) _estadoAI = estadoDaAI.parado;
+                        if (_paradoRotina == ParadoouRotina.parado)
+                        {
+                            _estadoAI = estadoDaAI.parado;
+                            //anim.SetBool("walking", false);
+                        }
                         else _estadoAI = estadoDaAI.andando;
                         //_estadoAI = estadoDaAI.parado;
+                        anim.SetBool("walking", true);
+                        Debug.Log("Perdi e estou voltando");
                         break;
                     }
                     if (_cabeca.inimigosVisiveis.Count > 0)
@@ -116,6 +142,7 @@ public class AISimple : MonoBehaviour
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.seguindo;
+                        anim.SetBool("walking", true);
                     }
                     break;
             }
