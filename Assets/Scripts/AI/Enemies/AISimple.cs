@@ -21,10 +21,14 @@ public class AISimple : MonoBehaviour
     private int currentWayPoint;
     private float distanceWayPoint;
 
+    [SerializeField]
+    private float surpriseTimer = 2; //o tempo que o cara fica surpreso
+    private float countSurprise; //Contagem até surpriseTimer para começar a seguir
+
 
     enum estadoDaAI
     {
-        parado, andando, seguindo, procurandoAlvoPerdido
+        parado, andando, surpreso, seguindo, procurandoAlvoPerdido
     };
     estadoDaAI _estadoAI = estadoDaAI.parado;
 
@@ -76,8 +80,11 @@ public class AISimple : MonoBehaviour
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
-                        _estadoAI = estadoDaAI.seguindo;
-                        anim.SetBool("walking", true);
+                        //_estadoAI = estadoDaAI.seguindo;
+                        //anim.SetBool("walking", true);
+                        _estadoAI = estadoDaAI.surpreso;
+                        anim.SetBool("walking", false);
+                        Debug.Log("ALI ESTA");
                     }
                     break;
 
@@ -92,6 +99,21 @@ public class AISimple : MonoBehaviour
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
+                        //_estadoAI = estadoDaAI.seguindo;
+                        //anim.SetBool("walking", true);
+                        _estadoAI = estadoDaAI.surpreso;
+                        anim.SetBool("walking", false);
+                        Debug.Log("UN FORASTERO");
+                    }
+                    break;
+
+                case estadoDaAI.surpreso:
+                    anim.SetBool("walking", false);
+                    _navMesh.destination = transform.position;
+                    countSurprise += Time.deltaTime;
+                    if(countSurprise >= surpriseTimer)
+                    {
+                        countSurprise = 0;
                         _estadoAI = estadoDaAI.seguindo;
                         anim.SetBool("walking", true);
                     }
@@ -134,7 +156,7 @@ public class AISimple : MonoBehaviour
                         else _estadoAI = estadoDaAI.andando;
                         //_estadoAI = estadoDaAI.parado;
                         anim.SetBool("walking", true);
-                        Debug.Log("Perdi e estou voltando");
+                        //Debug.Log("Perdi e estou voltando");
                         break;
                     }
                     if (_cabeca.inimigosVisiveis.Count > 0)
