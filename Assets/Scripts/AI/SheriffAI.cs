@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class SheriffAI : MonoBehaviour, IInteractible
 {
     public Transform cientist;
+    public GameObject trigger;
 
     private Vector3 startPoint;
 
@@ -33,8 +34,9 @@ public class SheriffAI : MonoBehaviour, IInteractible
     IEnumerator timeToReturn()
     {
 
-        yield return new WaitForSeconds(100);
+        yield return new WaitForSeconds(50);
 
+        trigger.SetActive(true);
         _navmesh.SetDestination(startPoint);
         Debug.Log("Estou voltando");
     }
