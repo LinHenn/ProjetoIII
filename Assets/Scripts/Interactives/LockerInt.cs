@@ -9,7 +9,7 @@ public class LockerInt : MonoBehaviour, IInteractible
     {
 
         GetComponent<Animator>().SetTrigger("Open");
-        GetComponent<BoxCollider>().enabled = false;
+        if(gameObject.TryGetComponent<BoxCollider>(out BoxCollider component)) GetComponent<BoxCollider>().enabled = false;
         Destroy(this);
 
     }
