@@ -21,6 +21,8 @@ public class AISimple2 : MonoBehaviour
     private int currentWayPoint;
     private float distanceWayPoint;
 
+    public bool questComplete = false;
+
 
     enum estadoDaAI
     {
@@ -70,7 +72,7 @@ public class AISimple2 : MonoBehaviour
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
                         ultimaPosicConhecida = alvo.position;
-                        _estadoAI = estadoDaAI.seguindo;
+                        if(!questComplete) _estadoAI = estadoDaAI.seguindo;
                     }
                     break;
 
@@ -91,6 +93,7 @@ public class AISimple2 : MonoBehaviour
 
                 case estadoDaAI.seguindo: //Para quando ver o Player
                     //Checa se o jogador tem a roupa certa
+                    if (questComplete) break; 
                     if (Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 2f)
                     {
                         _navMesh.destination = transform.position;
@@ -98,7 +101,9 @@ public class AISimple2 : MonoBehaviour
                         if (isTheRightSuit == PlayerController.PC.suitPlayer)
                         {
                             rightSuit.Invoke();
+                            //_estadoAI = estadoDaAI.parado;
                             _cabeca.tagDosInimigos = "Qualquer";
+                            questComplete = true;
                         }
                         else
                         {
