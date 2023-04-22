@@ -47,9 +47,16 @@ public class GC_Prisioneiro : MonoBehaviour
        if (isFree) setPos();
     }
 
+    public void moveSet3()
+    {
+        setMove[3] = true;
+
+        if (isFree) setPos();
+    }
 
 
-    
+
+
     private void setPos()
     {
         if (setMove[0] && !setMove[1] && !setMove[2])
@@ -65,12 +72,18 @@ public class GC_Prisioneiro : MonoBehaviour
             prisioners035[2].SetActive(true);
         }
 
-        if(setMove[2])
+        if(setMove[2] && !setMove[3])
         {
             prisioners035[0].SetActive(false);
             prisioners035[1].SetActive(false);
             prisioners035[2].SetActive(false);
             prisioners035[3].SetActive(true);
+        }
+
+        if(setMove[3])
+        {
+            prisioners035[3].SetActive(false);
+            prisioners035[4].SetActive(true);
         }
     }
     

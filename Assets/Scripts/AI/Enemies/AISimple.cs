@@ -116,16 +116,23 @@ public class AISimple : MonoBehaviour
                         countSurprise = 0;
                         _estadoAI = estadoDaAI.seguindo;
                         anim.SetBool("walking", true);
+
+                        anim.SetBool("running", true);
+                        _navMesh.speed = 7f;
                     }
                     break;
 
                 case estadoDaAI.seguindo: //Para quando ver o Player
+                    
                     _navMesh.SetDestination(alvo.position);
                     if (!_cabeca.inimigosVisiveis.Contains(alvo))
                     {
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.procurandoAlvoPerdido;
                         anim.SetBool("walking", true);
+
+                        anim.SetBool("running", false);
+                        _navMesh.speed = 3.5f;
                     }
 
                     //Checa se o jogador morre
@@ -139,6 +146,7 @@ public class AISimple : MonoBehaviour
                     break;
 
                 case estadoDaAI.procurandoAlvoPerdido: //Para quando perder o jogador de vista
+                    
                     _navMesh.SetDestination(ultimaPosicConhecida);
                     timerProcura += Time.deltaTime;
 
@@ -165,6 +173,10 @@ public class AISimple : MonoBehaviour
                         ultimaPosicConhecida = alvo.position;
                         _estadoAI = estadoDaAI.seguindo;
                         anim.SetBool("walking", true);
+
+                        anim.SetBool("running", true);
+                        _navMesh.speed = 7f;
+
                     }
                     break;
             }

@@ -13,7 +13,7 @@ public class delegadoTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Sheriff" || other.name == "Xerife")
+        if(other.name == "Sheriff" || other.name == "Delegado")
         {
             if (!complete)
             {
@@ -26,7 +26,7 @@ public class delegadoTrigger : MonoBehaviour
                 //chatSucess.Interaction();
                 sheriffPuzzle.setPuzzle(0);
                 sheriffPuzzle.setPuzzle(1);
-                sheriffPuzzle.willInteract();
+                //sheriffPuzzle.willInteract();
             }
 
             gameObject.SetActive(false);

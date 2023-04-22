@@ -8,8 +8,11 @@ public class SheriffAI : MonoBehaviour, IInteractible
 {
     public Transform cientist;
     public GameObject trigger;
+    public Animator anim;
+    public Animator animCientist;
 
     private Vector3 startPoint;
+    [SerializeField] private Transform startPointCientist;
 
     private NavMeshAgent _navmesh;
 
@@ -25,6 +28,7 @@ public class SheriffAI : MonoBehaviour, IInteractible
     public void Interaction()
     {
         _navmesh.SetDestination(cientist.position);
+        anim.SetBool("walking", true);
 
         Debug.Log("Ajuda ao velho amigo");
 
@@ -33,12 +37,28 @@ public class SheriffAI : MonoBehaviour, IInteractible
 
     IEnumerator timeToReturn()
     {
-
         yield return new WaitForSeconds(50);
 
         trigger.SetActive(true);
         _navmesh.SetDestination(startPoint);
+        cientist.gameObject.GetComponent<NavMeshAgent>().SetDestination(startPointCientist.position);
+        animCientist.SetBool("walking", true);
+
         Debug.Log("Estou voltando");
+    }
+
+    private void FixedUpdate()
+    {
+        var distanceWayPoint = Vector3.Distance(startPoint, transform.position);
+        var distanceWayPointCientist = Vector3.Distance(startPointCientist.position, cientist.position);
+
+        if (distanceWayPoint < 1 && distanceWayPointCientist < 1)
+        {
+            anim.SetBool("walking", false);
+            animCientist.SetBool("walking", false);
+            Destroy(this);
+        }
+
     }
 
 }
