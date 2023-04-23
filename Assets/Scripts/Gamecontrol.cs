@@ -23,11 +23,14 @@ public enum Language
 
 public class Gamecontrol : MonoBehaviour
 {
+
     public static Gamecontrol GC;
 
     public Language Linguagem;
     public static Language setLanguage;
 
+    public bool mayInteract;
+    private float timerInteract;
 
     public List<InventoryItem> itemsInventory;
     public List<itemInventory> Inventory;
@@ -35,6 +38,9 @@ public class Gamecontrol : MonoBehaviour
     public string TargetItem;
 
     [SerializeField] private Image hand;
+
+
+    public bool MissionComplete = false;
 
 
     private void Awake()
@@ -64,6 +70,10 @@ public class Gamecontrol : MonoBehaviour
 
     public void AddInventory(itemInventory item)
     {
+        /*
+        if (!mayInteract) return;
+        timerInteract = 0.5f;
+        */
         
         Inventory.Add(item);
 
@@ -114,15 +124,17 @@ public class Gamecontrol : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        if (timerInteract > 0)
+        {
+            mayInteract = false;
+            timerInteract -= Time.deltaTime;
+        }
+        else mayInteract = true;
+
+
         
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -149,10 +161,22 @@ public class Gamecontrol : MonoBehaviour
     }
 
 
+    //Ao interagir com qualquer item, começa a contagem
+    public void HaveInteracted()
+    {
+        timerInteract = 0.5f;
+    }
+
 
     public void YouDied()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+    public void CompleteMission()
+    {
+        MissionComplete = true;
     }
 
 }

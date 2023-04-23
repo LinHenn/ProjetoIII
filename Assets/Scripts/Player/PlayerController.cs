@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("isflying");
 
-            m_MoveDir += Physics.gravity * Time.fixedDeltaTime * 20;
+            m_MoveDir += Physics.gravity * Time.fixedDeltaTime * 30;
         }
 
         m_CharacterController.Move(m_MoveDir * Time.deltaTime);

@@ -24,6 +24,7 @@ public class infoPuzzle : InfoBase
 
     public override void willInteract()
     {
+
         if (playerDist > distance) return;
 
         int index = whatPuzzle();

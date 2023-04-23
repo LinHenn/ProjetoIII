@@ -27,7 +27,11 @@ public class InfoBase : MonoBehaviour
 
     public virtual void willInteract()
     {
-        if(playerDist < distance)
+        if (!Gamecontrol.GC.mayInteract) return;
+        Gamecontrol.GC.HaveInteracted();
+
+
+        if (playerDist < distance)
         willHappen.Invoke();
     }
 
