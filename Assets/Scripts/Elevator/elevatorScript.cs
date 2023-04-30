@@ -10,6 +10,7 @@ public class elevatorScript : MonoBehaviour
 
     public direction moveDirection;
 
+    public Vector3 offset;
 
     private Animator anim;
 
@@ -31,6 +32,8 @@ public class elevatorScript : MonoBehaviour
 
         if (!stopped) return;
 
+        offset = PlayerController.PC.gameObject.transform.position - transform.position;
+
         if(moveDirection == direction.desce)
         {
             stopped = false;
@@ -50,5 +53,13 @@ public class elevatorScript : MonoBehaviour
             //set direction to go
         }
 
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (stopped) return;
+
+        PlayerController.PC.gameObject.transform.position = transform.position + offset;
     }
 }
