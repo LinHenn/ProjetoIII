@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SuitSwitch : MonoBehaviour, IInteractible
 {
+    public GameObject targetMaterial;
     public Material thisMaterial;
     public bool mayinteract;
 
     private void Start()
     {
-        GetComponent<Renderer>().material = thisMaterial;
+        //GetComponent<Renderer>().material = thisMaterial;
+        targetMaterial.GetComponent<Renderer>().material = thisMaterial;
     }
 
     public void Interaction()
@@ -18,7 +20,8 @@ public class SuitSwitch : MonoBehaviour, IInteractible
         Debug.Log(thisMaterial.name);
         var mat = PlayerController.PC.changeSuit(thisMaterial);
         thisMaterial = mat;
-        GetComponent<Renderer>().material = thisMaterial;
+        //GetComponent<Renderer>().material = thisMaterial;
+        targetMaterial.GetComponent<Renderer>().material = thisMaterial;
         //Debug.Log(thisMaterial.name);
 
         StartCoroutine(willwait());

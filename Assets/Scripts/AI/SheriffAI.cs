@@ -37,8 +37,14 @@ public class SheriffAI : MonoBehaviour, IInteractible
 
     IEnumerator timeToReturn()
     {
-        yield return new WaitForSeconds(50);
+        yield return new WaitForSeconds(120);
 
+        returnTime();
+        
+    }
+
+    public void returnTime()
+    {
         trigger.SetActive(true);
         _navmesh.SetDestination(startPoint);
         cientist.gameObject.GetComponent<NavMeshAgent>().SetDestination(startPointCientist.position);
@@ -46,6 +52,8 @@ public class SheriffAI : MonoBehaviour, IInteractible
 
         Debug.Log("Estou voltando");
     }
+        
+
 
     private void FixedUpdate()
     {
