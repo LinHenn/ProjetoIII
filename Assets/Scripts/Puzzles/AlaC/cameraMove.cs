@@ -23,9 +23,11 @@ public class cameraMove : MonoBehaviour
 
     public void setTalk(bool index) //Chama apenas para iniciar conversa
     {
+        
         isTalk = index;
-        if(!index) Prisioneer.mayChat = true;
-
+        //if(!index) Prisioneer.mayChat = true;
+        Debug.Log(index);
+        
     }
 
 

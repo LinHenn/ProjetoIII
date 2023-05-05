@@ -12,6 +12,7 @@ public class LockPrisionerAlaC : MonoBehaviour, IInteractible
 
     public UnityEvent notHappen;
 
+    public bool mayInt;
 
     public void Interaction()
     {

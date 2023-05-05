@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
 
         RotateView();
-        detection();
+        detection(mayMove);
 
         if (mayMove)
         {            
@@ -46,8 +46,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void detection()
+    private void detection(bool detect)
     {
+        if(!detect)
+        {
+            Gamecontrol.GC.setTarget("", false);
+            return;
+        }
+
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(cameraman.position,cameraman.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))

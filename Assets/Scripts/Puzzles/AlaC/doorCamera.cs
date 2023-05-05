@@ -7,9 +7,15 @@ public class doorCamera : MonoBehaviour
     [SerializeField]
     private GameObject cameraman;
 
+    public bool maySee = true;
+
 
     public void Interaction()
     {
+        if (!maySee) return;
+
+        maySee = false;
+
         cameraman.SetActive(true);
 
         //PlayerController.PC.gameObject.SetActive(false);
@@ -23,6 +29,14 @@ public class doorCamera : MonoBehaviour
 
         //PlayerController.PC.gameObject.SetActive(true);
         PlayerController.PC.setMove(true);
+        StartCoroutine(waittotalk());
+    }
+
+    IEnumerator waittotalk()
+    {
+        yield return new WaitForSeconds(0.5f);
+        maySee = true;
+
     }
 
 

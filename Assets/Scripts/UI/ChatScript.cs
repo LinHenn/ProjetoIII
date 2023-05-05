@@ -114,7 +114,7 @@ public class ChatScript : MonoBehaviour
 
         if (timer >= 0) return;
 
-        timer = 1f;
+        timer = 0.5f;
 
 
         if (Gamecontrol.GC.Linguagem == Language.Português)
