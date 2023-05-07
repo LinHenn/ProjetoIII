@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+
 
 
 [System.Serializable]
@@ -24,6 +26,10 @@ public enum Language
 public class Gamecontrol : MonoBehaviour
 {
 
+    public SaveGame SG;
+
+    public GameObject[] players;
+
     public static Gamecontrol GC;
 
     public Language Linguagem;
@@ -42,6 +48,13 @@ public class Gamecontrol : MonoBehaviour
 
     public bool MissionComplete = false;
 
+    //para Save da Cena 1;
+    public Animator DoorAlaB;
+    public Animator Door2Floor;
+    public UnityEvent setCena1Part1;
+    public UnityEvent setCena1Complete;
+    public UnityEvent setCena1Subsolo;
+
 
     private void Awake()
     {
@@ -56,7 +69,31 @@ public class Gamecontrol : MonoBehaviour
         
 
         Debug.Log(setLanguage.ToString());
+
+        //save system
+        SG.startBool();
+        if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2) players[0].SetActive(true);
+        else if (SaveGame._secureRoom1 && !SaveGame._secureRoom2)
+        {
+            players[1].SetActive(true);
+            Door2Floor.SetTrigger("Open");
+            setCena1Part1.Invoke();
+        }
+        else if (SaveGame._secureRoom2)
+        {
+            players[2].SetActive(true);
+            Door2Floor.SetTrigger("Open");
+            setCena1Part1.Invoke();
+            setCena1Subsolo.Invoke();
+        }
+
+        if(SaveGame._is035Free)
+        {
+            setCena1Complete.Invoke();
+        }
+
     }
+
 
 
     public void setTarget(string item, bool mayTarget)
@@ -177,6 +214,12 @@ public class Gamecontrol : MonoBehaviour
     public void CompleteMission()
     {
         MissionComplete = true;
+    }
+
+
+    public void resetSave()
+    {
+        SG.clearSave();
     }
 
 }

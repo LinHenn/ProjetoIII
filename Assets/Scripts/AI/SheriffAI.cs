@@ -48,6 +48,7 @@ public class SheriffAI : MonoBehaviour, IInteractible
         trigger.SetActive(true);
         _navmesh.SetDestination(startPoint);
         cientist.gameObject.GetComponent<NavMeshAgent>().SetDestination(startPointCientist.position);
+        cientist.gameObject.GetComponent<infoPuzzle>().setPuzzle(1);
         animCientist.SetBool("walking", true);
 
         Debug.Log("Estou voltando");

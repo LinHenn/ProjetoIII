@@ -19,10 +19,6 @@ public class FOVEnemy : MonoBehaviour
     [Range(1, 50)]
     public float distanciaDeVisao = 10;
 
-    [Header("OverlapSphere")]
-    public LayerMask layersDosInimigos = 2;
-    public bool desenharEsfera = true;
-
     [Header("Raycast")]
     public string tagDosInimigos = "Respawn";
     [Range(2, 180)]
@@ -48,7 +44,7 @@ public class FOVEnemy : MonoBehaviour
             cabecaInimigo = transform;
         }
         // o operador ~ inverte o estado dos bits (0 passa a ser 1, e vice versa)
-        layerObstaculos = ~layersDosInimigos;
+
     }
 
     void Update()
