@@ -34,7 +34,10 @@ public class Gamecontrol : MonoBehaviour
 
     public Language Linguagem;
     public static Language setLanguage;
+    public bool Hardcore;
+    public static bool setHardcore;
 
+    [HideInInspector]
     public bool mayInteract;
     private float timerInteract;
 
@@ -70,6 +73,18 @@ public class Gamecontrol : MonoBehaviour
 
         Debug.Log(setLanguage.ToString());
 
+        //remover assim que estiver ajustado no menu inicial
+        setHardcore = Hardcore;
+        Debug.Log("Hardcore: " +setHardcore);
+        //
+
+        startPlayer();
+
+    }
+
+
+    void startPlayer()
+    {
         //save system
         SG.startBool();
         if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2) players[0].SetActive(true);
@@ -87,11 +102,10 @@ public class Gamecontrol : MonoBehaviour
             setCena1Subsolo.Invoke();
         }
 
-        if(SaveGame._is035Free)
+        if (SaveGame._is035Free)
         {
             setCena1Complete.Invoke();
         }
-
     }
 
 

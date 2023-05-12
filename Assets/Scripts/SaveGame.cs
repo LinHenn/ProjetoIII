@@ -37,6 +37,7 @@ public class SaveGame
 
     public void saveBool()
     {
+        if (Gamecontrol.setHardcore) return;
 
         _secureRoom1 = SecureRoom1;
         _is035Free = is035Free;
