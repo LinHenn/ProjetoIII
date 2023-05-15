@@ -16,6 +16,8 @@ public class lockerPuzzler : MonoBehaviour, IPuzzle
 
     public UnityEvent itHappens;
 
+    public bool isToCompare = true;
+
     public void letsPlay()
     {
 
@@ -25,11 +27,11 @@ public class lockerPuzzler : MonoBehaviour, IPuzzle
     {
 
         playerResult[index] = value;
-        compareResult();
+        if(isToCompare) compareResult();
 
     }
 
-    private void compareResult()
+    public void compareResult()
     {
         int cont = 0;
 
@@ -49,6 +51,11 @@ public class lockerPuzzler : MonoBehaviour, IPuzzle
             Debug.Log("Nao abriu");            
         }
 
+    }
+
+    public void ClearResult()
+    {
+        playerResult.Clear();
     }
 
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class geradorPuzzle : MonoBehaviour, IInteractible
 {
-    [SerializeField]
-    private bool hasEnergy;
+    //[SerializeField]
+    //private bool hasEnergy;
 
     public void Interaction()
     {
 
-        hasEnergy = true;
+        //hasEnergy = true;
 
     }
 }
