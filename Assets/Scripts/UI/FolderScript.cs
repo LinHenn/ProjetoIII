@@ -30,9 +30,9 @@ public class FolderScript : MonoBehaviour
 
         PlayerController.PC.setMove(false);
 
+        itemImage.SetActive(true);
 
         itemImage.GetComponent<Image>().sprite = image;
-        itemImage.SetActive(true);
 
 
 
@@ -40,6 +40,8 @@ public class FolderScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PlayerController.PC.slowMouse(true);
+
+        Time.timeScale = 0;
     }
 
 
@@ -54,6 +56,8 @@ public class FolderScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         PlayerController.PC.slowMouse(false);
+
+        Time.timeScale = 1;
     }
 
 
