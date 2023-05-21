@@ -33,9 +33,9 @@ public class delegadoTrigger : MonoBehaviour
         }
     }
 
-    public void setComplete()
+    public void setComplete(bool i)
     {
-        complete = true;
+        complete = i;
     }
 
 

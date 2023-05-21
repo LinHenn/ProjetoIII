@@ -87,7 +87,7 @@ public class mixerPuzzle : MonoBehaviour, IInteractible
 
         if (H2SO4 && HNO3 && C3H8O3)
         {
-            Debug.Log("Consegui Explodir");
+            //Debug.Log("Consegui Explodir");
             Explosion.Invoke();
         }
     }

@@ -96,7 +96,7 @@ public class tilesGerador : MonoBehaviour
                     foreach(var tile in tileup.conection)
                     if (con == tile)
                     {
-                        Debug.Log("parei " + gameObject.name + " " + tile);
+                        //Debug.Log("parei " + gameObject.name + " " + tile);
                         return;
                     }
                 }
@@ -118,7 +118,7 @@ public class tilesGerador : MonoBehaviour
                     foreach (var tile in tileup.conection)
                         if (con == tile)
                         {
-                            Debug.Log("parei " + gameObject.name +" " +tile);
+                            //Debug.Log("parei " + gameObject.name +" " +tile);
                             return;
                         }
                 }
@@ -143,7 +143,8 @@ public class tilesGerador : MonoBehaviour
                     foreach (var tile in tileup.conection)
                         if (con == tile)
                         {
-                            Debug.Log("parei " + gameObject.name + " " + tile); return;
+                            //Debug.Log("parei " + gameObject.name + " " + tile); 
+                            return;
                         }
                 }
             }
@@ -167,7 +168,8 @@ public class tilesGerador : MonoBehaviour
                     foreach (var tile in tileup.conection)
                         if (con == tile)
                         {
-                            Debug.Log("parei " + gameObject.name + " " + tile); return;
+                            //Debug.Log("parei " + gameObject.name + " " + tile); 
+                            return;
                         }
                 }
             }

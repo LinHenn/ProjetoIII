@@ -57,6 +57,7 @@ public class Gamecontrol : MonoBehaviour
     public UnityEvent setCena1Part1;
     public UnityEvent setCena1Complete;
     public UnityEvent setCena1Subsolo;
+    public UnityEvent setSubsoloComplete;
 
 
     private void Awake()
@@ -87,14 +88,20 @@ public class Gamecontrol : MonoBehaviour
     {
         //save system
         SG.startBool();
-        if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2) players[0].SetActive(true);
-        else if (SaveGame._secureRoom1 && !SaveGame._secureRoom2)
+        if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2)
+        {
+            players[0].SetActive(true);
+            return;
+        }
+
+        if (SaveGame._secureRoom1)
         {
             players[1].SetActive(true);
             Door2Floor.SetTrigger("Open");
             setCena1Part1.Invoke();
         }
-        else if (SaveGame._secureRoom2)
+        
+        if (SaveGame._secureRoom2)
         {
             players[2].SetActive(true);
             Door2Floor.SetTrigger("Open");
@@ -102,10 +109,19 @@ public class Gamecontrol : MonoBehaviour
             setCena1Subsolo.Invoke();
         }
 
+
         if (SaveGame._is035Free)
         {
             setCena1Complete.Invoke();
         }
+
+        if(SaveGame._timeComplete)
+        {
+            Debug.Log("TempoCompleto");
+            SG.timeComplete = true;
+            setSubsoloComplete.Invoke();
+        }
+
     }
 
 
@@ -228,12 +244,13 @@ public class Gamecontrol : MonoBehaviour
     public void CompleteMission()
     {
         MissionComplete = true;
+        SG.timeComplete = true;
     }
 
 
     public void resetSave()
     {
-        SG.clearSave();
+        //SG.clearSave();
     }
 
 }
