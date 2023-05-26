@@ -225,6 +225,9 @@ public class Gamecontrol : MonoBehaviour
         }
 
 
+        if (Input.GetKeyDown(KeyCode.F)) Debug.Log(SG.timeComplete);
+
+
     }
 
 

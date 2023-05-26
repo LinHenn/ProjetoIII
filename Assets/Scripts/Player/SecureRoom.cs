@@ -8,6 +8,7 @@ public class SecureRoom : MonoBehaviour
 
     [SerializeField]
     private bool info1;
+    [SerializeField]
     private bool info2;
 
     private void OnTriggerEnter(Collider other)
