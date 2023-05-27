@@ -13,7 +13,7 @@ public class EnemyAlmox : MonoBehaviour, IInteractible
 
         GetComponent<AISimple>().posicInicialDaAI = target.transform.position;
 
-        StartCoroutine(timeToReturn());
+        //StartCoroutine(timeToReturn());
     }
 
 
