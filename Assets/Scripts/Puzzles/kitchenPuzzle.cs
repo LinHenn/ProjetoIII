@@ -35,6 +35,7 @@ public class kitchenPuzzle : MonoBehaviour
         {
             isComplete = true;
             chefKitchen.setPuzzle(1);
+            GetComponent<addFlashback>().Interaction();
             //chefKitchen.setPuzzle(2);
         }
     }

@@ -11,7 +11,7 @@ public class EntranceDoor : MonoBehaviour, IInteractible
     public void Interaction()
     {
 
-        if (Gamecontrol.GC.MissionComplete)
+        if (Gamecontrol.GC.SG.timeComplete)
         {
             Debug.Log("You Win");
             GoodEnd.Invoke();

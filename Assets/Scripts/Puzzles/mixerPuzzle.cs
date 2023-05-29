@@ -16,7 +16,7 @@ public class mixerPuzzle : MonoBehaviour, IInteractible
     public void Interaction()
     {
         var item = handScript.HS.itemHand;
-        if (item.Name == "") return;
+        if (item.Name == null || item.Name == "") return;
 
 
         //Debug.Log(item.index);

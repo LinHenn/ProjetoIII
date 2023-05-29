@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveGame
 {
-    public static bool _secureRoom1, _is035Free, _secureRoom2, _timeComplete;
+    public static bool _secureRoom1, _is035Free, _secureRoom2, _timeComplete, _homeSweetHome;
 
 
     public bool SecureRoom1; //Está na Sala Segura do primeiro andar
@@ -14,6 +14,8 @@ public class SaveGame
 
     public bool is035Free; //Se soltou o 35
     public bool timeComplete; //Se a máquina do tempo foi utilizada
+
+    public bool homeSweetHome; //se estiver em casa;
 
     public bool teste;
 
@@ -26,6 +28,7 @@ public class SaveGame
             _is035Free = is035Free;
             _secureRoom2 = SecureRoom2;
             _timeComplete = timeComplete;
+            _homeSweetHome = homeSweetHome;
 
         }
         else
@@ -34,8 +37,10 @@ public class SaveGame
             SecureRoom2 = _secureRoom2;
             is035Free = _is035Free;
             timeComplete = _timeComplete;
+            homeSweetHome = _homeSweetHome;
+
         }
-        Debug.Log(_secureRoom1 + " " + _is035Free + " " + _secureRoom2 + " " + _timeComplete);
+        //Debug.Log(_secureRoom1 + " " + _is035Free + " " + _secureRoom2 + " " + _timeComplete);
 
     }
 
@@ -47,6 +52,7 @@ public class SaveGame
         _is035Free = is035Free;
         _secureRoom2 = SecureRoom2;
         _timeComplete = timeComplete;
+        _homeSweetHome = homeSweetHome;
 
         //Debug.Log(_secureRoom1 + " " + _is035Free + " " + _secureRoom2 + " " +_timeComplete);
 
@@ -58,10 +64,12 @@ public class SaveGame
         _is035Free = false;
         _secureRoom2 = false;
         _timeComplete = false;
+        _homeSweetHome = false;
         SecureRoom1 = false;
         is035Free = false;
         SecureRoom2 = false;
         timeComplete = false;
+        homeSweetHome = false;
     }
 
 }

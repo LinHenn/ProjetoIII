@@ -58,7 +58,10 @@ public class Gamecontrol : MonoBehaviour
     public UnityEvent setCena1Complete;
     public UnityEvent setCena1Subsolo;
     public UnityEvent setSubsoloComplete;
+    public UnityEvent isAtHome;
 
+    public bool isDead = false;
+    private bool isSeen = false;
 
     private void Awake()
     {
@@ -88,38 +91,47 @@ public class Gamecontrol : MonoBehaviour
     {
         //save system
         SG.startBool();
-        if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2)
-        {
-            players[0].SetActive(true);
-            return;
-        }
 
-        if (SaveGame._secureRoom1)
+        if (SaveGame._homeSweetHome)
         {
-            players[1].SetActive(true);
-            Door2Floor.SetTrigger("Open");
-            setCena1Part1.Invoke();
+            players[3].SetActive(true);
+            isAtHome.Invoke();
         }
-        
-        if (SaveGame._secureRoom2)
+        else
         {
-            players[2].SetActive(true);
-            Door2Floor.SetTrigger("Open");
-            setCena1Part1.Invoke();
-            setCena1Subsolo.Invoke();
-        }
+            if (!SaveGame._secureRoom1 && !SaveGame._secureRoom2)
+            {
+                players[0].SetActive(true);
+                return;
+            }
+
+            if (SaveGame._secureRoom1)
+            {
+                players[1].SetActive(true);
+                Door2Floor.SetTrigger("Open");
+                setCena1Part1.Invoke();
+            }
+
+            if (SaveGame._secureRoom2)
+            {
+                players[2].SetActive(true);
+                Door2Floor.SetTrigger("Open");
+                setCena1Part1.Invoke();
+                setCena1Subsolo.Invoke();
+            }
 
 
-        if (SaveGame._is035Free)
-        {
-            setCena1Complete.Invoke();
-        }
+            if (SaveGame._is035Free)
+            {
+                setCena1Complete.Invoke();
+            }
 
-        if(SaveGame._timeComplete)
-        {
-            Debug.Log("TempoCompleto");
-            SG.timeComplete = true;
-            setSubsoloComplete.Invoke();
+            if (SaveGame._timeComplete)
+            {
+                Debug.Log("TempoCompleto");
+                SG.timeComplete = true;
+                setSubsoloComplete.Invoke();
+            }
         }
 
     }
@@ -238,8 +250,37 @@ public class Gamecontrol : MonoBehaviour
     }
 
 
+    public void haveSeen()
+    {
+        if(!isSeen)
+        {
+            Debug.Log("Avistado");
+            isSeen = true;
+        }
+    }
+
+
+    //quando o jogador morrer
     public void YouDied()
     {
+        if (isDead) return;
+
+        isDead = true;
+        Debug.Log("morri");
+        //PlayerController.PC.gameObject.SetActive(false);
+        flashback.instance.playMemory();
+
+    }
+
+
+    //apenas para resetar a fase;
+    public void restartDie()
+    {
+        StartCoroutine(dieRestart());
+    }
+    IEnumerator dieRestart()
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -248,6 +289,13 @@ public class Gamecontrol : MonoBehaviour
     {
         MissionComplete = true;
         SG.timeComplete = true;
+    }
+
+    public void LetGoHome()
+    {
+        SG.homeSweetHome = true;
+        SG.saveBool();
+        YouDied();
     }
 
 

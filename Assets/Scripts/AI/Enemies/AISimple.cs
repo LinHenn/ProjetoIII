@@ -139,7 +139,7 @@ public class AISimple : MonoBehaviour
                     if (Vector3.Distance(transform.position, PlayerController.PC.transform.position) < 1f)
                     {
                         Gamecontrol.GC.YouDied();
-                        Debug.Log("Morri");
+                        //Debug.Log("Morri");
                     }
                     //
 
