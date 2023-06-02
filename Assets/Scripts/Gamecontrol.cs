@@ -61,7 +61,12 @@ public class Gamecontrol : MonoBehaviour
     public UnityEvent isAtHome;
 
     public bool isDead = false;
+
+    //para quando for visto por um inimigo
     private bool isSeen = false;
+    private bool iSeeYou = false;
+    [SerializeField]
+    private GameObject isSeenPanel;
 
     private void Awake()
     {
@@ -252,11 +257,32 @@ public class Gamecontrol : MonoBehaviour
 
     public void haveSeen()
     {
-        if(!isSeen)
+        isSeen = true;
+
+        if (!iSeeYou)
         {
             Debug.Log("Avistado");
-            isSeen = true;
+            Time.timeScale = 0.5f;
+            StartCoroutine(timerSeen());
         }
+    }
+
+    private IEnumerator timerSeen()
+    {
+        Debug.Log(Time.timeScale);
+
+        iSeeYou = true;
+        isSeenPanel.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+        if (Time.timeScale == 0.5f) Time.timeScale = 1f;
+        isSeen = false;
+
+        yield return new WaitForSeconds(1);
+        iSeeYou = false;
+        Debug.Log("voltei");
+        if (!isSeen) isSeenPanel.SetActive(false);
+        else StartCoroutine(timerSeen());
     }
 
 
@@ -303,5 +329,6 @@ public class Gamecontrol : MonoBehaviour
     {
         //SG.clearSave();
     }
+
 
 }

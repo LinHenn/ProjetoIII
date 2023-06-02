@@ -84,7 +84,7 @@ public class AISimple : MonoBehaviour
                         //anim.SetBool("walking", true);
                         _estadoAI = estadoDaAI.surpreso;
                         anim.SetBool("walking", false);
-                        Debug.Log("ALI ESTA");
+                        //Debug.Log("ALI ESTA");
                     }
                     break;
 
@@ -103,11 +103,13 @@ public class AISimple : MonoBehaviour
                         //anim.SetBool("walking", true);
                         _estadoAI = estadoDaAI.surpreso;
                         anim.SetBool("walking", false);
-                        Debug.Log("UN FORASTERO");
+                        //Debug.Log("UN FORASTERO");
                     }
                     break;
 
                 case estadoDaAI.surpreso:
+                    Gamecontrol.GC.haveSeen();
+                    //
                     anim.SetBool("walking", false);
                     _navMesh.destination = transform.position;
                     countSurprise += Time.deltaTime;
@@ -123,7 +125,8 @@ public class AISimple : MonoBehaviour
                     break;
 
                 case estadoDaAI.seguindo: //Para quando ver o Player
-                    
+                    Gamecontrol.GC.haveSeen();
+                    //
                     _navMesh.SetDestination(alvo.position);
                     if (!_cabeca.inimigosVisiveis.Contains(alvo))
                     {
