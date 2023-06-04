@@ -28,6 +28,8 @@ public class SecureRoom : MonoBehaviour
 
     public void setSave()
     {
+        //PlayerController.PC.setYPos(Ypos);
+
         if(Room == 1)
         {
             Gamecontrol.GC.SG.is035Free = info1;

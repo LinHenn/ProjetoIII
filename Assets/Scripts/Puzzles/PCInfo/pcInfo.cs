@@ -28,8 +28,11 @@ public class pcInfo : MonoBehaviour, IPuzzle
         
         if(playeranswer.text.Contains(rightAnswer))
         {
-            if (rightAnswer.Length + 1 == playeranswer.text.Length) Debug.Log("Senha correta");
-            willHappen.Invoke();
+            if (rightAnswer.Length + 1 == playeranswer.text.Length)
+            {
+                Debug.Log("Senha correta");
+                willHappen.Invoke();
+            }
         }
 
         playeranswer.text = "";

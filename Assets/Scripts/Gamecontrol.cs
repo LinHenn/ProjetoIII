@@ -60,11 +60,13 @@ public class Gamecontrol : MonoBehaviour
     public UnityEvent setSubsoloComplete;
     public UnityEvent isAtHome;
 
+    [HideInInspector]
     public bool isDead = false;
 
     //para quando for visto por um inimigo
     private bool isSeen = false;
-    private bool iSeeYou = false;
+    [HideInInspector]
+    public bool iSeeYou = false;
     [SerializeField]
     private GameObject isSeenPanel;
 
@@ -167,8 +169,9 @@ public class Gamecontrol : MonoBehaviour
             {
                 index.setItem(item);
                 index.gameObject.SetActive(true);
-                return;
+                break;
             }
+            //Debug.Log("Nao cabe mais");
         }
     }
 
@@ -192,9 +195,11 @@ public class Gamecontrol : MonoBehaviour
 
         int i = 0;
 
-        while(i < Inventory.Count)
+        while(i < Inventory.Count && i < 5)
         {
-            Debug.Log(Inventory[i].Name);
+            //Debug.Log(i);
+
+            //Debug.Log(Inventory[i].Name);
             
             if(Inventory[i].Name != itemsInventory[i].thisItem.Name)
             {
@@ -204,7 +209,7 @@ public class Gamecontrol : MonoBehaviour
             i++;
         }
 
-        itemsInventory[i].gameObject.SetActive(false);
+        if(i < 5) itemsInventory[i].gameObject.SetActive(false);
     }
 
 
@@ -222,27 +227,32 @@ public class Gamecontrol : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (!itemsInventory[0].gameObject.activeSelf) return;
             handScript.HS.setHand(Inventory[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (!itemsInventory[1].gameObject.activeSelf) return;
             handScript.HS.setHand(Inventory[1]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            if (!itemsInventory[2].gameObject.activeSelf) return;
             handScript.HS.setHand(Inventory[2]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            if (!itemsInventory[3].gameObject.activeSelf) return;
             handScript.HS.setHand(Inventory[3]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            if (!itemsInventory[4].gameObject.activeSelf) return;
             handScript.HS.setHand(Inventory[4]);
         }
 
 
-        if (Input.GetKeyDown(KeyCode.F)) Debug.Log(SG.timeComplete);
+        //if (Input.GetKeyDown(KeyCode.F)) Debug.Log(SG.timeComplete);
 
 
     }
@@ -269,7 +279,7 @@ public class Gamecontrol : MonoBehaviour
 
     private IEnumerator timerSeen()
     {
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
 
         iSeeYou = true;
         isSeenPanel.SetActive(true);

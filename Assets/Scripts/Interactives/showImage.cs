@@ -13,6 +13,7 @@ public class showImage : MonoBehaviour, IInteractible
     public void Interaction()
     {
         if (!mayWatch) return;
+        if (Gamecontrol.GC.iSeeYou) return;
 
         FolderScript.FS.setFolder(folder);
         Debug.Log("1");
