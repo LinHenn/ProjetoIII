@@ -32,7 +32,7 @@ public class SheriffAI : MonoBehaviour, IInteractible
 
         Debug.Log("Ajuda ao velho amigo");
 
-        StartCoroutine(timeToReturn());
+        //StartCoroutine(timeToReturn());
     }
 
     IEnumerator timeToReturn()

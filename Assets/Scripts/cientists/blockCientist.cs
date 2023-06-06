@@ -11,6 +11,6 @@ public class blockCientist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        cientistBrave.Invoke();
+        if(other.tag == "Player") cientistBrave.Invoke();
     }
 }
