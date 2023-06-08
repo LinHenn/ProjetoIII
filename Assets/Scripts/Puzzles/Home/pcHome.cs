@@ -26,6 +26,9 @@ public class pcHome : MonoBehaviour, IPuzzle
         windows[1].SetActive(false);
         windows[2].SetActive(false);
         windows[3].SetActive(false);
+        windows[4].SetActive(true);
+
+        endGame = 0;
     }
 
     public void checkPassword()

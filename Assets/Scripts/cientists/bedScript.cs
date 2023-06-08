@@ -18,6 +18,9 @@ public class bedScript : MonoBehaviour, IInteractible
     [SerializeField]
     private Animator doorAnim;
 
+    //[SerializeField]
+    public GameObject endChat;
+
     public void Interaction()
     {
         if (Gamecontrol.GC.MissionComplete) return;
@@ -47,6 +50,7 @@ public class bedScript : MonoBehaviour, IInteractible
         yield return new WaitForSeconds(2);
         playerChar.SetActive(true);
         cameraCapsule.SetActive(false);
+        endChat.GetComponent<IInteractible>().Interaction();
     }
 
 
