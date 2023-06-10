@@ -72,7 +72,7 @@ public class MouseLook
 
     private void InternalLockUpdate()
     {
-        
+        /*
         if(Input.GetKeyUp(KeyCode.Escape))
         {
             m_cursorIsLocked = false;
@@ -83,7 +83,7 @@ public class MouseLook
         {
             m_cursorIsLocked = true;
         }
-        
+        */
 
         if (m_cursorIsLocked)
         {

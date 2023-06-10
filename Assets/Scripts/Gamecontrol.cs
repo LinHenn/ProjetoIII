@@ -70,6 +70,21 @@ public class Gamecontrol : MonoBehaviour
     [SerializeField]
     private GameObject isSeenPanel;
 
+    //pause
+    [Header("Menu de pausa")]
+    public bool isPause;
+    [SerializeField]
+    private GameObject MenuScreen;
+
+    private bool playerMayMove;
+    private CursorLockMode mouseMode;
+    private bool cursorVisible;
+    //PlayerController.PC.setMove(true);
+    //Cursor.lockState = CursorLockMode.Locked;
+    //Cursor.visible = false;
+
+    //
+
     private void Awake()
     {
         GC = this;
@@ -253,9 +268,46 @@ public class Gamecontrol : MonoBehaviour
 
 
         //if (Input.GetKeyDown(KeyCode.F)) Debug.Log(SG.timeComplete);
-
+        if (Input.GetKeyDown(KeyCode.Escape)) PauseButton(!isPause);
 
     }
+
+    //menu de pause
+    public void PauseButton(bool value)
+    {
+        isPause = value;
+
+        if(isPause)
+        {
+            Time.timeScale = 0;
+            MenuScreen.SetActive(true);
+
+            playerMayMove = PlayerController.PC.mayMove;
+            mouseMode = Cursor.lockState;
+            cursorVisible = Cursor.visible;
+
+            PlayerController.PC.setMove(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            
+}
+        else
+        {
+            Time.timeScale = 1;
+            MenuScreen.SetActive(false);
+
+            PlayerController.PC.setMove(playerMayMove);
+            Cursor.lockState = mouseMode;
+            Cursor.visible = cursorVisible;
+        }
+    }
+
+    //
+
+
+
+
 
 
     //Ao interagir com qualquer item, começa a contagem

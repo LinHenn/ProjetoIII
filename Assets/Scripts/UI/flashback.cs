@@ -44,7 +44,7 @@ public class flashback : MonoBehaviour
         if (isRestarting) return;
 
         if (photos.Count <= 0) 
-        { 
+        {
             Gamecontrol.GC.restartDie(); 
             isRestarting = true; 
             return; 
