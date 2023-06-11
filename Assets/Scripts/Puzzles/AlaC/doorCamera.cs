@@ -12,6 +12,8 @@ public class doorCamera : MonoBehaviour
 
     public void Interaction()
     {
+        if (Gamecontrol.GC.isPause) return;
+
         if (!maySee) return;
 
         maySee = false;
@@ -24,6 +26,8 @@ public class doorCamera : MonoBehaviour
 
     public void returnGame()
     {
+        if (Gamecontrol.GC.isPause) return;
+
         cameraman.SetActive(false);
         Debug.Log("Voltei");
 

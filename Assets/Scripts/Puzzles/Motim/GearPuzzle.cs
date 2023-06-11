@@ -19,7 +19,7 @@ public class GearPuzzle : MonoBehaviour, IInteractible
 
         Value++;
         if (Value == 8) Value = 0;
-        transform.rotation = Quaternion.Euler(Value * 45f, 0, -90);
+        transform.rotation = Quaternion.Euler(Value * 45f, -90, -90);
 
         if (Value == rightValue)
         {
