@@ -8,6 +8,8 @@ public class SaveGame
 {
     public static bool _secureRoom1, _is035Free, _secureRoom2, _timeComplete, _homeSweetHome;
 
+    [HideInInspector]
+    public Animator iconAnim;
 
     public bool SecureRoom1; //Está na Sala Segura do primeiro andar
     public bool SecureRoom2; //Está no subsolo
@@ -56,6 +58,7 @@ public class SaveGame
 
         //Debug.Log(_secureRoom1 + " " + _is035Free + " " + _secureRoom2 + " " +_timeComplete);
 
+        iconAnim.SetTrigger("play");
     }
 
     public void clearSave()

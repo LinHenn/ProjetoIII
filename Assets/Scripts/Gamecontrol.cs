@@ -25,7 +25,6 @@ public enum Language
 
 public class Gamecontrol : MonoBehaviour
 {
-
     public SaveGame SG;
 
     public GameObject[] players;

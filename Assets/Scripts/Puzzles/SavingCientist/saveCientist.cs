@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class saveCientist : MonoBehaviour
 {
+    public AudioSource hurtSound;
+    private AudioSource cutWire;
+
     public static saveCientist instance;
     
     [SerializeField] private Material[] ledMat;
@@ -30,11 +33,14 @@ public class saveCientist : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        cutWire = GetComponent<AudioSource>();
     }
 
 
     public void setChoice(bool i)
     {
+        cutWire.Play();
+
         if (isFinished) return;
 
         if (i)
@@ -55,12 +61,12 @@ public class saveCientist : MonoBehaviour
         else
         {
             mistakes++;
+            hurtSound.Play();
 
             if (mistakes == 1)
             {
                 lamps[0].GetComponent<Renderer>().material = ledMat[0];
             }
-
             else
             {
                 lamps[1].GetComponent<Renderer>().material = ledMat[0];

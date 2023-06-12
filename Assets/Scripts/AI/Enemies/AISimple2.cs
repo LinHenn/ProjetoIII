@@ -16,6 +16,8 @@ public class AISimple2 : MonoBehaviour
 
     public void checkSuit()
     {
+        if (questComplete) return;
+
         if (isTheRightSuit == PlayerController.PC.suitPlayer)
         {
             rightSuit.Invoke();

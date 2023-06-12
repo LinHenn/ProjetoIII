@@ -8,6 +8,7 @@ public class AISimple : MonoBehaviour
 {
     public FOVEnemy _cabeca;
     public Animator anim;
+    public AudioSource heySound;
     NavMeshAgent _navMesh;
     Transform alvo;
     [HideInInspector]
@@ -41,6 +42,8 @@ public class AISimple : MonoBehaviour
 
     void Start()
     {
+        heySound = GetComponent<AudioSource>();
+
         _navMesh = GetComponent<NavMeshAgent>();
         alvo = null;
         ultimaPosicConhecida = Vector3.zero;
@@ -83,6 +86,7 @@ public class AISimple : MonoBehaviour
                         //_estadoAI = estadoDaAI.seguindo;
                         //anim.SetBool("walking", true);
                         _estadoAI = estadoDaAI.surpreso;
+                        heySound.Play();
                         anim.SetBool("walking", false);
                         //Debug.Log("ALI ESTA");
                     }
@@ -102,6 +106,7 @@ public class AISimple : MonoBehaviour
                         //_estadoAI = estadoDaAI.seguindo;
                         //anim.SetBool("walking", true);
                         _estadoAI = estadoDaAI.surpreso;
+                        heySound.Play();
                         anim.SetBool("walking", false);
                         //Debug.Log("UN FORASTERO");
                     }
