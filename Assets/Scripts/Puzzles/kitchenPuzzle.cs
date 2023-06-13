@@ -11,6 +11,8 @@ public class kitchenPuzzle : MonoBehaviour
 
     [SerializeField]
     private infoPuzzle chefKitchen;
+    [SerializeField]
+    private AudioSource beefSound;
 
 
     public void cozinhandoBife()
@@ -21,9 +23,10 @@ public class kitchenPuzzle : MonoBehaviour
 
     IEnumerator waitCook()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         objects[0].SetActive(false);
         objects[1].SetActive(true);
+        beefSound.Pause();
     }
 
 
