@@ -11,10 +11,13 @@ public class FolderScript : MonoBehaviour
 
     [SerializeField] private GameObject itemImage;
 
+    private AudioSource AS;
+
 
     private void Awake()
     {
         FS = this;
+        AS = GetComponent<AudioSource>();
     }
 
 
@@ -27,6 +30,7 @@ public class FolderScript : MonoBehaviour
 
     public void setFolder(Sprite image)
     {
+        AS.Play();
 
         PlayerController.PC.setMove(false);
 

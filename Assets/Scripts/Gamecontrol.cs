@@ -78,6 +78,9 @@ public class Gamecontrol : MonoBehaviour
     private bool playerMayMove;
     private CursorLockMode mouseMode;
     private bool cursorVisible;
+
+    private AudioSource AS;
+    [SerializeField] private AudioClip[] clips;
     //PlayerController.PC.setMove(true);
     //Cursor.lockState = CursorLockMode.Locked;
     //Cursor.visible = false;
@@ -94,6 +97,8 @@ public class Gamecontrol : MonoBehaviour
 
         //Adicionar assim que criar o jogo
         //Linguagem = setLanguage;
+
+        AS = GetComponent<AudioSource>();
         
 
         Debug.Log(setLanguage.ToString());
@@ -157,6 +162,12 @@ public class Gamecontrol : MonoBehaviour
 
     }
 
+    public void playSoundGC(int index)
+    {
+        AS.clip = clips[index];
+        AS.Play();
+    }
+
 
 
     public void setTarget(string item, bool mayTarget)
@@ -174,7 +185,10 @@ public class Gamecontrol : MonoBehaviour
         if (!mayInteract) return;
         timerInteract = 0.5f;
         */
-        
+
+
+        playSoundGC(0);
+
         Inventory.Add(item);
 
         foreach(var index in itemsInventory)
@@ -192,6 +206,8 @@ public class Gamecontrol : MonoBehaviour
     public void RemoveInventory(itemInventory item)
     {
         //Debug.Log("Removerei " +item.Name);
+
+        playSoundGC(1);
 
         Inventory.Remove(item);
 

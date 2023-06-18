@@ -25,6 +25,8 @@ public class handInteraction : MonoBehaviour, IInteractible
             willHappens.Invoke();
             //Destroy(this);
 
+            //Gamecontrol.GC.playSoundGC(1);
+
         }
 
     }

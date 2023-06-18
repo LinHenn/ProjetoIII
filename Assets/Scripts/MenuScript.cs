@@ -11,12 +11,23 @@ public class MenuScript : MonoBehaviour
 
     public Slider LoadingBarFill;
 
+    public GameObject[] itemsMenu;
+
     public void exitGame()
     {
         Application.Quit();
     }
 
-    
+
+    private void Start()
+    {
+        foreach(var item in itemsMenu)
+        {
+            item.SetActive(false);
+        }
+    }
+
+
     public void playGame(int sceneId)
     {
         StartCoroutine(LoadSceneAsync(sceneId));

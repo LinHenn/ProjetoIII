@@ -23,6 +23,8 @@ public class CamouflageBase : MonoBehaviour, IInteractible
 
         PlayerController.PC.gameObject.SetActive(false);
 
+        GetComponent<AudioSource>().Play();
+
     }
 
     public void returnGame()
