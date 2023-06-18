@@ -8,6 +8,8 @@ public class SaveGame
 {
     public static bool _secureRoom1, _is035Free, _secureRoom2, _timeComplete, _homeSweetHome;
 
+    public static bool hardcore;
+
     [HideInInspector]
     public Animator iconAnim;
 
@@ -22,8 +24,12 @@ public class SaveGame
     public bool teste;
 
 
+
     public void startBool()
     {
+        if (hardcore) teste = true;
+
+
         if (teste)
         {
             _secureRoom1 = SecureRoom1;
@@ -73,6 +79,11 @@ public class SaveGame
         SecureRoom2 = false;
         timeComplete = false;
         homeSweetHome = false;
+    }
+
+    public static void setHardcore(bool ishardcore)
+    {
+        hardcore = ishardcore;
     }
 
 }
