@@ -42,10 +42,13 @@ public class bedScript : MonoBehaviour, IInteractible
         cameraCapsule.SetActive(true);
         playerChar.SetActive(false);
         doorAnim.SetTrigger("Close");
+        doorAnim.gameObject.GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         doorAnim.SetTrigger("Open");
+        doorAnim.gameObject.GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(2);
         playerChar.SetActive(true);

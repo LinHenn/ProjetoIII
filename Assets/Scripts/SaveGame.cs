@@ -54,13 +54,15 @@ public class SaveGame
 
     public void saveBool()
     {
+
+        _homeSweetHome = homeSweetHome;
+
         if (Gamecontrol.setHardcore) return;
 
         _secureRoom1 = SecureRoom1;
         _is035Free = is035Free;
         _secureRoom2 = SecureRoom2;
         _timeComplete = timeComplete;
-        _homeSweetHome = homeSweetHome;
 
         //Debug.Log(_secureRoom1 + " " + _is035Free + " " + _secureRoom2 + " " +_timeComplete);
 

@@ -407,5 +407,12 @@ public class Gamecontrol : MonoBehaviour
         //SG.clearSave();
     }
 
+    public void GoToMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MenuScene");
+        SG.clearSave();
+    }
+
 
 }

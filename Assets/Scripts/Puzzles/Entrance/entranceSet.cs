@@ -13,10 +13,13 @@ public class entranceSet : MonoBehaviour, IPuzzle
 
     public UnityEvent isFinished;
 
+    [SerializeField] private AudioSource AS;
+
     public void setTile(int index, bool choice)
     {
         mychoice[index] = choice;
 
+        AS.Play();
 
         for(int i = 0; i < result.Length; i++)
         {

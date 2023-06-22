@@ -28,6 +28,19 @@ public class ctrlGerador : MonoBehaviour, IPuzzle
 
     public void checkEnergy()
     {
+        StartCoroutine(awaitTime());
+    }
+
+    IEnumerator awaitTime()
+    {
+        checkEnergy1();
+        yield return new WaitForSeconds(0.5f);
+        checkEnergy1();
+    }
+
+
+    private void checkEnergy1()
+    {
         if(isOn)
         {
             OnClearEnter.Invoke();

@@ -14,10 +14,20 @@ public class MotimPuzzle : MonoBehaviour
 
     public UnityEvent willHappen;
 
+    private AudioSource AS;
+
+
+    private void Awake()
+    {
+        AS = GetComponent<AudioSource>();
+    }
+
 
     public void setGear(int index, bool value)
     {
         gears[index] = value;
+
+        AS.Play();
 
 
         if (gears[0] && gears[1] && gears[2] && gears[3])

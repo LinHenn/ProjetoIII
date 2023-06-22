@@ -16,12 +16,16 @@ public class microPuzzle : MonoBehaviour, IPuzzle
 
     public UnityEvent itHappens;
 
+    private AudioSource AS;
+
 
     public void letsPlay()
     {
 
         targetText.text = "0";
         sequence = 0;
+
+        AS = GetComponent<AudioSource>();
     }
 
     public void AddNumber(float i)
@@ -29,6 +33,8 @@ public class microPuzzle : MonoBehaviour, IPuzzle
         sequence = sequence * 10;
         sequence += i;
         targetText.text = sequence.ToString();
+
+        AS.Play();
     }
 
     public virtual void buttonStart()

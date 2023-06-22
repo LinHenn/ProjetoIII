@@ -18,13 +18,16 @@ public class lockerPuzzler : MonoBehaviour, IPuzzle
 
     public bool isToCompare = true;
 
+    private AudioSource AS;
+
     public void letsPlay()
     {
-
+        AS = GetComponent<AudioSource>();
     }
 
     public void addResult(int index, int value)
     {
+        AS.Play();
 
         playerResult[index] = value;
         if(isToCompare) compareResult();

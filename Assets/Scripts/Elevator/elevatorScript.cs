@@ -96,4 +96,13 @@ public class elevatorScript : MonoBehaviour
 
         PlayerController.PC.gameObject.transform.position = transform.position + offset;
     }
+
+    public void playSound()
+    {
+        AudioSource AS = GetComponent<AudioSource>();
+
+        if (!AS.isPlaying) AS.Play();
+        else AS.Pause();
+    }
+
 }
