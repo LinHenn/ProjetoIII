@@ -58,7 +58,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 16
   m_IsActive: 1
 --- !u!4 &4242166391587248410
 Transform:
@@ -170,7 +170,7 @@ AudioSource:
   m_GameObject: {fileID: 4242166391587248411}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -4965716315134382394, guid: 26706af222fdad64a86c3ec339c873b1, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1255dc640bea3f4e9efd0e53c1e6d70, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
@@ -328,6 +328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2023-04-16 Bathroom Locker
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5d11cd1c7eac7d34cb497362de98e95f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d11cd1c7eac7d34cb497362de98e95f, type: 3}
 --- !u!1 &3899653329660292293 stripped
@@ -414,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b7a8f14dc6c2ea84dbb3a397afb27d5f, type: 3}
       propertyPath: m_Name
       value: Locker Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7a8f14dc6c2ea84dbb3a397afb27d5f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7a8f14dc6c2ea84dbb3a397afb27d5f, type: 3}

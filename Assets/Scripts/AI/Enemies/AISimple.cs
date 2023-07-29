@@ -52,11 +52,13 @@ public class AISimple : MonoBehaviour
         {
             anim.SetBool("walking", false);
             _estadoAI = estadoDaAI.parado;
+            _navMesh.SetDestination(posicInicialDaAI);
         }
         else
         {
             anim.SetBool("walking", true);
             _estadoAI = estadoDaAI.andando;
+            _navMesh.SetDestination(wayPoints[0].transform.position);
         }
 
         posicInicialDaAI = transform.position;
@@ -74,10 +76,24 @@ public class AISimple : MonoBehaviour
             switch (_estadoAI)
             {
                 case estadoDaAI.parado: //Para os Idle
-                    _navMesh.SetDestination(posicInicialDaAI);
+                    //_navMesh.SetDestination(posicInicialDaAI);
 
-                    if (_navMesh.remainingDistance < 0.5f) anim.SetBool("walking", false);
-                    else anim.SetBool("walking", true);
+                    if(anim.GetBool("walking"))
+                    {
+                        if (_navMesh.remainingDistance < 0.5f)
+                        {
+                            anim.SetBool("walking", false);
+                        }
+                    }
+                    /*
+                    if (_navMesh.remainingDistance < 0.5f)
+                    {
+                        if (anim.GetBool("walking")) anim.SetBool("walking", false);
+                    }
+                    else
+                    {
+                        if(!anim.GetBool("walking")) anim.SetBool("walking", true);
+                    }*/
 
                     if (_cabeca.inimigosVisiveis.Count > 0)
                     {
@@ -88,15 +104,18 @@ public class AISimple : MonoBehaviour
                         _estadoAI = estadoDaAI.surpreso;
                         heySound.Play();
                         anim.SetBool("walking", false);
+                        _navMesh.isStopped = true;
                         //Debug.Log("ALI ESTA");
                     }
                     break;
 
                 case estadoDaAI.andando: // Para os de rotina
-                    _navMesh.destination = wayPoints[currentWayPoint].transform.position;
-                    if (distanceWayPoint < 1)
+                    //_navMesh.destination = wayPoints[currentWayPoint].transform.position;
+                    //_navMesh.SetDestination(wayPoints[currentWayPoint].transform.position);
+                    if (_navMesh.remainingDistance < 1)
                     {
                         RandomWayPoints();
+                        _navMesh.SetDestination(wayPoints[currentWayPoint].transform.position);
                         //_estadoAI = estadoDaAI.andando;
                     }
                     if (_cabeca.inimigosVisiveis.Count > 0)
@@ -108,6 +127,7 @@ public class AISimple : MonoBehaviour
                         _estadoAI = estadoDaAI.surpreso;
                         heySound.Play();
                         anim.SetBool("walking", false);
+                        _navMesh.isStopped = true;
                         //Debug.Log("UN FORASTERO");
                     }
                     break;
@@ -115,12 +135,13 @@ public class AISimple : MonoBehaviour
                 case estadoDaAI.surpreso:
                     Gamecontrol.GC.haveSeen();
                     //
-                    anim.SetBool("walking", false);
-                    _navMesh.destination = transform.position;
+                    //anim.SetBool("walking", false);
+                    //_navMesh.isStopped = true;
                     countSurprise += Time.deltaTime;
                     if(countSurprise >= surpriseTimer)
                     {
                         countSurprise = 0;
+                        _navMesh.isStopped = false;
                         _estadoAI = estadoDaAI.seguindo;
                         anim.SetBool("walking", true);
 
@@ -167,9 +188,14 @@ public class AISimple : MonoBehaviour
                         if (_paradoRotina == ParadoouRotina.parado)
                         {
                             _estadoAI = estadoDaAI.parado;
+                            _navMesh.SetDestination(posicInicialDaAI);
                             //anim.SetBool("walking", false);
                         }
-                        else _estadoAI = estadoDaAI.andando;
+                        else
+                        {
+                            _estadoAI = estadoDaAI.andando;
+                            _navMesh.SetDestination(wayPoints[currentWayPoint].transform.position);
+                        }
                         //_estadoAI = estadoDaAI.parado;
                         anim.SetBool("walking", true);
                         //Debug.Log("Perdi e estou voltando");
