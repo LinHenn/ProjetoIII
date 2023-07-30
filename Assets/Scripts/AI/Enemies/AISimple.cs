@@ -26,12 +26,13 @@ public class AISimple : MonoBehaviour
     private float surpriseTimer = 2; //o tempo que o cara fica surpreso
     private float countSurprise; //Contagem até surpriseTimer para começar a seguir
 
-
-    enum estadoDaAI
+    [HideInInspector]
+    public enum estadoDaAI
     {
         parado, andando, surpreso, seguindo, procurandoAlvoPerdido
     };
-    estadoDaAI _estadoAI = estadoDaAI.parado;
+    [HideInInspector]
+    public estadoDaAI _estadoAI = estadoDaAI.parado;
 
     public enum ParadoouRotina
     {
@@ -85,16 +86,6 @@ public class AISimple : MonoBehaviour
                             anim.SetBool("walking", false);
                         }
                     }
-                    /*
-                    if (_navMesh.remainingDistance < 0.5f)
-                    {
-                        if (anim.GetBool("walking")) anim.SetBool("walking", false);
-                    }
-                    else
-                    {
-                        if(!anim.GetBool("walking")) anim.SetBool("walking", true);
-                    }*/
-
                     if (_cabeca.inimigosVisiveis.Count > 0)
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
@@ -114,10 +105,19 @@ public class AISimple : MonoBehaviour
                     //_navMesh.SetDestination(wayPoints[currentWayPoint].transform.position);
                     if (_navMesh.remainingDistance < 1)
                     {
+                        /*
+                        if (wayPoints.Length == 1)
+                        {
+                            _estadoAI = estadoDaAI.parado;
+                            _paradoRotina = ParadoouRotina.parado;
+                            anim.SetBool("walking", false);
+                        }*/
+
                         RandomWayPoints();
                         _navMesh.SetDestination(wayPoints[currentWayPoint].transform.position);
                         //_estadoAI = estadoDaAI.andando;
                     }
+
                     if (_cabeca.inimigosVisiveis.Count > 0)
                     {
                         alvo = _cabeca.inimigosVisiveis[0];
@@ -233,5 +233,32 @@ public class AISimple : MonoBehaviour
         if (wayPointIndex >= wayPoints.Length) wayPointIndex = 0;
 
         currentWayPoint = wayPointIndex;
+
+        /*
+        if (wayPoints.Length == 1)
+        {
+            _estadoAI = estadoDaAI.parado;
+            _paradoRotina = ParadoouRotina.parado;
+            anim.SetBool("walking", false);
+        }*/
     }
+
+    public void GoTo(Transform destiny)
+    {
+        anim.SetBool("walking", true);
+        _navMesh.SetDestination(destiny.position);
+        _paradoRotina = ParadoouRotina.rotina;
+        _estadoAI = estadoDaAI.andando;
+        StartCoroutine(GoWent(destiny));
+    }
+
+    IEnumerator GoWent(Transform destiny)
+    {
+        yield return new WaitUntil(() => Vector3.Distance(transform.position, destiny.position) < 1);
+
+        _estadoAI = estadoDaAI.parado;
+        _paradoRotina = ParadoouRotina.parado;
+        anim.SetBool("walking", false);
+    }
+
 }

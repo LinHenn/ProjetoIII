@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAlmox : MonoBehaviour, IInteractible
 {
@@ -11,7 +12,7 @@ public class EnemyAlmox : MonoBehaviour, IInteractible
     {
         startPoint = transform.position;
 
-        GetComponent<AISimple>().posicInicialDaAI = target.transform.position;
+        GetComponent<AISimple>().GoTo(target.transform);
 
         //StartCoroutine(timeToReturn());
     }
@@ -22,7 +23,8 @@ public class EnemyAlmox : MonoBehaviour, IInteractible
         Debug.Log("vem");
         yield return new WaitForSeconds(120f);
 
-        GetComponent<AISimple>().posicInicialDaAI = startPoint;
+        //GetComponent<AISimple>().posicInicialDaAI = startPoint;
+        GetComponent<NavMeshAgent>().SetDestination(startPoint);
 
         Debug.Log("vai");
 
